@@ -1,0 +1,51 @@
+<block-ui>
+	<div class="container">
+		<div class="row justify-content-md-center  mt-5">
+			<div class="col-sm-5 ">
+				<div class="card text-sm-center">
+					<div class="card-header py-3 px-5">
+						<strong> Login to continue</strong>
+					</div>
+					<div class="card-body">
+						<form role="form" action="#" #myForm="ngForm" method="POST">
+							<fieldset>
+								<div class="row justify-content-sm-center">
+									<div class="text-center">
+										<img src="../../../favicon.png" class="rounded" width="150px" height="150px" alt="">
+									</div>
+								</div>
+
+								<div class="row mt-3">
+									<div class="col-sm">
+										<div class="form-group">
+											<div class="input-group">
+												<input required ngModel #username="ngModel" name="username" id="username" type="text" class="form-control" placeholder="Username"
+												 type="text" autofocus>
+											</div>
+											<div class="alert alert-danger" *ngIf="!username.valid&&username.touched">Please Enter Username!</div>
+										</div>
+										<div class="form-group">
+											<div class="input-group">
+												<input class="form-control" required ngModel #password="ngModel" name="password" id="password" placeholder="Password" type="password">
+											</div>
+										</div>
+										<div class="alert alert-danger" *ngIf="!password.valid&&password.touched">Please Enter Password!</div>
+										<div class="form-group">
+											<input type="submit" [disabled]="!myForm.form.valid" (click)="checkLogin(username.value,password.value)" class="btn btn-lg btn-primary btn-block"
+											 value="Sign in">
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+					<div class="card-footer ">
+						<div *ngIf="isLoginError" class="alert alert-danger">Incorret username or password</div>
+						Don't have an account!
+						<a [routerLink]="['/register']" onClick=""> Sign Up Here </a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</block-ui>

@@ -1,0 +1,40 @@
+<block-ui>
+  <toaster-container [toasterconfig]="config"></toaster-container>
+  <form #emailForm="ngForm">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <nb-card>
+          <nb-card-header>New Email</nb-card-header>
+          <nb-card-body>
+
+            <div class="input-group">
+              <input required ngModel #subject="ngModel" name="subject" id="subject" type="text" placeholder="Subject" class="form-control"
+              />
+            </div>
+            <div class="alert alert-danger" *ngIf="!subject.valid&&subject.touched">Please Enter Subject!</div>
+            <div class="input-group">
+              <input required ngModel #name="ngModel" name="name" id="name" type="text" placeholder="Your Name" class="form-control" />
+            </div>
+            <div class="alert alert-danger" *ngIf="!name.valid&&name.touched">Please Enter Your Name!</div>
+            <div class="input-group">
+              <input required ngModel #email="ngModel" email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" name="email"
+                id="email" type="email" placeholder="To" class="form-control" />
+               
+              </div>
+            <div class="alert alert-danger" *ngIf="!email.valid&&email.touched">Email invalid!</div>
+            <div class="input-group">
+              
+                <ckeditor  [config]="{ extraPlugins: 'divarea'}" required ngModel #message="ngModel"  name="message" id="message" placeholder="Your messages"></ckeditor>
+                <re-captcha style="margin: 1rem 1rem 1rem 4rem; " required #captchaRef="reCaptcha"  (resolved)="resolved($event)" siteKey="6LeNGmIUAAAAAHeP74WhPrpmQK2lM0O4ceVDWOyh"></re-captcha>
+            </div>
+           
+            <div class="alert alert-danger" *ngIf="!message.valid&&message.touched">Please Enter Messages!</div>
+            <input type="submit" (click)="createMailFromService(email.value,message.value,subject.value)" (click)="captchaRef.reset()" [disabled]="!emailForm.form.valid" class="btn btn-hero-danger btn-demo col-md-6 offset-md-3" value="Send"/>
+          
+          </nb-card-body>
+        </nb-card>
+
+      </div>
+    </div>
+  </form>
+</block-ui>
