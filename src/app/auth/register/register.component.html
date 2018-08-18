@@ -17,11 +17,11 @@
 
 								<div class="row mt-3">
 									<div class="col-sm">
-										<div class="alert alert-danger"  *ngIf="errorMessages"> {{errorMessages}}</div>
+										<div class="alert alert-danger"  *ngIf="errorMessages"> {{errorMessages|json}}</div>
 										<!-- USERNAME -->
 										<div class="form-group">
 											<div class="input-group">
-												<input required ngModel #username="ngModel" name="username" pattern='^[a-zA-Z0-9._-]+$' autofocus id="username" type="text"
+												<input required ngModel #username="ngModel" name="username" pattern='^[a-zA-Z0-9._-]+$'  id="username" type="text"
 												 class="form-control" placeholder="Username" type="text" autofocus>
 											</div>
 										</div>
@@ -37,7 +37,7 @@
 										</div>
 										<div class="alert alert-danger" *ngIf="!password.valid&&password.touched">Please Enter Password!</div>
 										<!-- CONFIRM PASSWORD -->
-										<div class="form-group">
+										<div class="form-group"> 
 											<div class="input-group">
 												<input class="form-control" required ngModel #repassword="ngModel" name="repassword" id="repassword" placeholder="Enter password again"
 												 type="password">
@@ -55,7 +55,7 @@
 										<!-- FULL NAME -->
 										<div class="form-group">
 											<div class="input-group">
-												<input required ngModel #fullname="ngModel" name="fullname" id="fulname" type="text" class="form-control" placeholder="Full name"
+												<input required ngModel #fullname="ngModel" ng-pattern ="/^[a-zA-Z\s]*$/" name="fullname" id="fulname" type="text" class="form-control" placeholder="Full name"
 												 type="text" autofocus>
 											</div>
 										</div>

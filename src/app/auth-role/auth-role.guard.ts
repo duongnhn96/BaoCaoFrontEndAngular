@@ -1,4 +1,4 @@
-import { Cookie } from 'ng2-cookies/ng2-cookies';
+
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
@@ -10,11 +10,11 @@ export class AuthRoleGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):  boolean {
-    if (this.isTokenExpired(Cookie.get('userToken'))) {
+    if (this.isTokenExpired(localStorage.getItem('userToken'))) {
       this.router.navigate(['/login']);
       return false; 
     }
-    if(Cookie.get('userToken')!=null)
+    if(localStorage.getItem('userToken')!=null)
       return true; // cho phep vao
     
     this.router.navigate(['/login']);
@@ -40,6 +40,6 @@ export class AuthRoleGuard implements CanActivate {
     return !(date.valueOf() > new Date().valueOf());
   }
   getToken(): string {
-    return Cookie.get(TOKEN_NAME);
+    return localStorage.getItem(TOKEN_NAME);
   }
 }

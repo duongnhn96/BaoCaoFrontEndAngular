@@ -1,4 +1,3 @@
-import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { UsersService } from './../../../user.service';
 import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
@@ -25,8 +24,7 @@ export class HeaderComponent implements OnInit {
             ) {
   }
   public LogOut(){
-    //  localStorage.removeItem('userToken'); // remove token
-      Cookie.deleteAll();
+      localStorage.removeItem('userToken'); // remove token
       this.router.navigate(['/login']);
     }
   ngOnInit() {

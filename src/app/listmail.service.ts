@@ -6,9 +6,8 @@ import { IListMail, IDELETE_MAIL } from './@core/data/listmail';
 import { Injectable } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpXsrfTokenExtractor } from '@angular/common/http';
-import { Cookie } from '../../node_modules/ng2-cookies/ng2-cookies';
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json','X-XSRF-TOKEN': Cookie.get('userToken') })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' } )
 };
 @Injectable({
   providedIn: 'root'

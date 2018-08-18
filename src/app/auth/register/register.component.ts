@@ -33,7 +33,8 @@ export class RegisterComponent implements OnInit {
       this.blockUI.stop();
       this.router.navigate(['/login']);
     }, (err: HttpErrorResponse) => {
-      this.errorMessages = err.error
+      this.errorMessages = err.error;
+      console.log(this.errorMessages);
       this.blockUI.stop();
       
     }

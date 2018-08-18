@@ -1,3 +1,4 @@
+import { XssComponent } from './xss/xss.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,7 @@ import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthRoleGuard } from './auth-role/auth-role.guard';
 
+
 const routes: Routes = [
   { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule',canActivate:[AuthRoleGuard] },
 
@@ -25,6 +27,10 @@ const routes: Routes = [
         component: LoginComponent,
       }
     ]
+  },
+  {
+    path: 'xss',
+    component: XssComponent
   },
   {
     path: 'register',

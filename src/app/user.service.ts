@@ -1,6 +1,4 @@
-import { Cookie } from 'ng2-cookies/ng2-cookies';
-import { of } from 'rxjs/observable/of';
-import { tap, catchError } from 'rxjs/operators';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Appsetting } from './@core/data/config';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/filter';
@@ -15,8 +13,10 @@ import { IUserLogin, IListUser, CreateUser } from './@core/data/listuser';
 
 export class UsersService {
 
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient,private sanitizer: DomSanitizer) { }
+  public trustedUrl(text : string) {
+    return this.sanitizer.bypassSecurityTrustUrl(text);
+  }
   userAuthentication(username:string, password:string): Observable<IUserLogin[]> {
     const myheader = new HttpHeaders ({
       'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ export class UsersService {
   }
 
   getUserInfo() {
-    var token = Cookie.get('userToken');
+    var token = localStorage.getItem('userToken');
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace('-', '+').replace('_', '/');
     return JSON.parse(window.atob(base64));

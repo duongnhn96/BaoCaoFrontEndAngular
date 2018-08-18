@@ -1,6 +1,7 @@
 import { BlockUIModule } from 'ng-block-ui';
 import { BrowserModule } from '@angular/platform-browser';
 import { MyHttpInterceptor } from './../my-http-interceptor';
+import { ResponseInterceptor } from './../my-http-responeinterceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
@@ -29,6 +30,11 @@ const PAGES_COMPONENTS = [
     {
       provide: HTTP_INTERCEPTORS, 
       useClass: MyHttpInterceptor, 
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptor,
       multi: true
     }
     

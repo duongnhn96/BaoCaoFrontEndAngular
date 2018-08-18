@@ -1,4 +1,3 @@
-import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -14,7 +13,7 @@ export class MyHttpInterceptor implements HttpInterceptor {
     
     request = request.clone({
       setHeaders: {
-        Authorization: `Bearer ${Cookie.get('userToken')}`
+        Authorization: `Bearer ${localStorage.getItem('userToken')}`
       }
     });
     return next.handle(request);

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser'
-import {Cookie} from 'ng2-cookies/ng2-cookies';
+
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
@@ -23,8 +23,7 @@ export class LoginComponent implements OnInit {
       if(data==null){
         this.isLoginError = true;
       }
- //     localStorage.setItem('userToken', data);
-      Cookie.set("userToken", data);
+      localStorage.setItem('userToken', data);
       this.blockUI.stop();
       this.router.navigate(['/pages']);
     }, () => {

@@ -20,8 +20,9 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { XssComponent } from './xss/xss.component';
 @NgModule({
-  declarations: [AppComponent, AuthComponent, LoginComponent, RegisterComponent],
+  declarations: [AppComponent, AuthComponent, LoginComponent, RegisterComponent, XssComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
